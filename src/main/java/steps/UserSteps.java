@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import model.UserModel;
-
 import static data.Endpoints.CREATE_USER_PATH;
 import static data.Endpoints.DELETE_USER_PATH;
 import static io.restassured.RestAssured.given;

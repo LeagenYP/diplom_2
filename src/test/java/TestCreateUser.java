@@ -58,7 +58,7 @@ public class TestCreateUser extends BaseApiTest {
 
     @Test
     @DisplayName("Попытка создать пользователя без почты (не допускается)")
-    public void cannotCreateCourierWithoutFirstName() {
+    public void testCannotCreateUserWithoutEmail() {
         UserModel user = new UserModel(null, PASSWORD, NAME);
 
         Response response = createUser(user)

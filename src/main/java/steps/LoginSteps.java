@@ -4,10 +4,8 @@ import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import model.LoginModel;
-
 import static data.Endpoints.LOGIN_USER_PATH;
 import static io.restassured.RestAssured.given;
-
 public class LoginSteps {
 
     @Step("Авторизация курьера")
