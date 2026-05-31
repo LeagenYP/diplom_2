@@ -8,7 +8,7 @@ import static data.Endpoints.LOGIN_USER_PATH;
 import static io.restassured.RestAssured.given;
 public class LoginSteps {
 
-    @Step("Авторизация курьера")
+    @Step("Авторизация пользователя")
     public static Response loginUser(LoginModel loginModel) {
         return given()
                 .log().all()
