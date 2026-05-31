@@ -2,7 +2,6 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
-import model.LoginModel;
 import model.OrderModel;
 import model.UserModel;
 import org.junit.After;
@@ -15,7 +14,6 @@ import static data.UserData.*;
 import static java.net.HttpURLConnection.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static steps.LoginSteps.loginUser;
 import static steps.OrderSteps.createOrderWithAuthToken;
 import static steps.OrderSteps.createOrderWithoutAuthToken;
 import static steps.UserSteps.createUser;
@@ -24,15 +22,12 @@ import static steps.UserSteps.deleteUser;
 public class TestCreateOrder extends BaseApiTest {
 
     private String userAuthToken;
-    Response response;
 
     @Description("Подготовка пользователя")
     @Before
     public void setUp() {
         UserModel user = new UserModel(EMAIL, PASSWORD, NAME);
-        response = createUser(user);
-        LoginModel loginModel = new LoginModel(EMAIL, PASSWORD);
-        loginUser(loginModel);
+        Response response = createUser(user);
         userAuthToken = response.jsonPath().get("accessToken");
     }
 
@@ -84,7 +79,7 @@ public class TestCreateOrder extends BaseApiTest {
     }
 
     @Test
-    @DisplayName("Создание заказа с авторизацией и без ингредиентов")
+    @DisplayName("Создание заказа с авторизацией и c неверным хэшом ингредиента")
     public void testCreateOrderWithAuthTokenAndWithWrongIngredientsHash() {
         List<String> ingredients = new ArrayList<>();
         ingredients.add(INGREDIENT_BUN + "2222dds");
